@@ -35,9 +35,9 @@ jobs:
       run: |
         echo "TOTAL_DURATION=$(expr $(date +%s) - ${START_TIME})"
         ./test_result_script.sh
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+    # - uses: actions/upload-artifact@v4
+    #   if: always()
+    #   with:
+    #     name: playwright-report
+    #     path: playwright-report/
+    #     retention-days: 30
