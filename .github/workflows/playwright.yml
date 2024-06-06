@@ -23,7 +23,7 @@ jobs:
       run: npx playwright test
     - name: Collect build data
       if: always()
-      run: expr $(date +%s) - $(START_TIME)
+      run: expr $(date +%s) - ${START_TIME}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
