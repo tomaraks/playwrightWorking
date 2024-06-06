@@ -35,5 +35,5 @@ jobs:
         # name: playwright-report
         # path: playwright-report/
         name: test-results
-        path: /home/runner/work/playwrightWorking/test-results   
+        path: test-results/
         retention-days: 30
