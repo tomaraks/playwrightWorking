@@ -19,14 +19,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Ensure test-results directory exists
-      run: mkdir -p /home/runner/work/playwrightWorking/test-results
+    - name: Run Playwright tests
+      run: npx playwright test
     - name: List directory contents for debugging
       run: |
         echo "Listing /home/runner/work/playwrightWorking directory"
-        ls -la /home/runner/work/playwrightWorking
-    - name: Run Playwright tests
-      run: npx playwright test
+        ls -la /home/runner/work/playwrightWorking  
     - name: Set up script permissions
       run: chmod +x reports/test_result_script.sh  
     - name: Collect build data
