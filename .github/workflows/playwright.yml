@@ -21,6 +21,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+    - name: Set up script permissions
+      run: chmod +x reports/test_result_script.sh  
     - name: Collect build data
       working-directory: reports
       if: always()
