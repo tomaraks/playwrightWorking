@@ -28,7 +28,7 @@ jobs:
       if: always()
       with:
         name: test-results
-        path: /home/runner/work/playwrightWorking/test-results
+        path: test-results/
     - name: Collect build data
       working-directory: reports
       if: always()
