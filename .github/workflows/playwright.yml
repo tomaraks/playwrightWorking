@@ -24,7 +24,7 @@ jobs:
     - name: Collect build data
       working-directory: reports
       if: always()
-      run: 
+      run: |
         echo "TOTAL_DURATION=$(expr $(date +%s) - ${START_TIME})"
         ./test_result_script.sh
     - uses: actions/upload-artifact@v4
