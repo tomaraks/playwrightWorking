@@ -22,8 +22,11 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
     - name: Collect build data
+      working-directory: reports
       if: always()
-      run: expr $(date +%s) - ${START_TIME}
+      run: 
+        echo "TOTAL_DURATION=$(expr $(date +%s) - ${START_TIME})"
+        ./test_result_script.sh
     - uses: actions/upload-artifact@v4
       if: always()
       with:

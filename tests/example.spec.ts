@@ -25,5 +25,5 @@ test("run an api test", async ({ page, request }) => {
   );
 
   let responseBody = await response.json();
-  expect(responseBody).toHaveProperty("completed");
+  expect(responseBody).toHaveProperty("completed1111111");
 });
