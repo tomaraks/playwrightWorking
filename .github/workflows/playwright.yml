@@ -9,6 +9,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
+    - name: Set start time
+      run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
@@ -19,6 +21,9 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
+    - name: Collect build data
+      if: always()
+      run: expr $(date +%s) - $(START_TIME)
     - uses: actions/upload-artifact@v4
       if: always()
       with:
