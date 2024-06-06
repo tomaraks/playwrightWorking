@@ -26,7 +26,7 @@ jobs:
       if: always()
       run: |
         echo "TOTAL_DURATION=$(expr $(date +%s) - ${START_TIME})"
-        ./reports/report/test_result_script.sh
+        ./test_result_script.sh
     - uses: actions/upload-artifact@v4
       if: always()
       with:
