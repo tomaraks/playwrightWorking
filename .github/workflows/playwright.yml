@@ -19,6 +19,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Ensure test-results directory exists
+      run: mkdir -p /home/runner/work/playwrightWorking/test-results
     - name: Run Playwright tests
       run: npx playwright test
     - name: Set up script permissions

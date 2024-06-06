@@ -8,8 +8,8 @@
 ###################################################################################################
 
 TEST_RESULTS_LOCATION="${1:-/home/runner/work/playwrightWorking/test-results}"
-TEST_RESULTS_STATUS=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"status": *\K"[^"]*"' infile.json)
-TEST_RESULTS_STRING=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"failedTests": *\K"[^"]*"' infile.json)
+TEST_RESULTS_STATUS=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"status": *\K"[^"]*"')
+TEST_RESULTS_STRING=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"failedTests": *\K"[^"]*"')
 echo "STATUS=$(echo ${TEST_RESULTS_STATUS} | awk '{ print $0 }')"
 echo "STRING=$(echo ${TEST_RESULTS_STRING} | awk '{ print $0 }')"
 # echo "IGNORED_TESTS=$(echo ${TEST_RESULTS_STRING} | awk -F'"' '{ print $2 }')"
