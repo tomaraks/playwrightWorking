@@ -7,9 +7,9 @@
 #     <testng-results ignored="0" total="23" passed="22" failed="1" skipped="0">                  #
 ###################################################################################################
 
-TEST_RESULTS_LOCATION="${1:-/Users/akshaytomar/Documents/personal/playwrightWorking/test-results}"
-TEST_RESULTS_STATUS=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep "status")
-TEST_RESULTS_STRING=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep "failedTests")
+TEST_RESULTS_LOCATION="${1:-/home/runner/work/playwrightWorking/test-results}"
+TEST_RESULTS_STATUS=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"status": *\K"[^"]*"' infile.json)
+TEST_RESULTS_STRING=$(cat "${TEST_RESULTS_LOCATION}/.last-run.json" | grep -Po '"failedTests": *\K"[^"]*"' infile.json)
 echo "STATUS=$(echo ${TEST_RESULTS_STATUS} | awk '{ print $0 }')"
 echo "STRING=$(echo ${TEST_RESULTS_STRING} | awk '{ print $0 }')"
 # echo "IGNORED_TESTS=$(echo ${TEST_RESULTS_STRING} | awk -F'"' '{ print $2 }')"
