@@ -31,9 +31,11 @@ jobs:
         path: test-results/
     - name: Collect build data
       working-directory: reports
+      env: 
+        PUSHGATEWAY_URL: ${{ secrets.PUSHGATEWAY_URL}}
       if: always()
       run: |
-        echo "github_actions_total_duration $(expr $(date +%s) - ${START_TIME})" | curl --data-binary @- ${{ secrets.PUSHGATEWAY_URL}}/metrics/job/github_actions
+        echo "github_actions_total_duration $(expr $(date +%s) - ${START_TIME})" | curl --data-binary @- ${PUSHGATEWAY_URL}/metrics/job/github_actions
         ./test_result_script.sh
     # - uses: actions/upload-artifact@v4
     #   if: always()
