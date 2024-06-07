@@ -28,6 +28,11 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Telemetry start - Maven tests
+      if: always()
+      run: |
+        echo "STEP_START=$(date +%s)" >> $GITHUB_ENV
+        echo "STEP_ID=run-maven-tests" >> $GITHUB_ENV  
     - name: Run Playwright tests
       run: npx playwright test
     - name: Set up script permissions
