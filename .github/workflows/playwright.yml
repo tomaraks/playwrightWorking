@@ -5,11 +5,13 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule: 
-    - cron: '10 09 * * *'
+    - cron: '5 4 * * *'
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env: 
+      BUILDEVENT_FILE: './buildevents.txt' # This is root of our repository
     steps:
     - name: Set start time
       run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
@@ -36,11 +38,13 @@ jobs:
       with:
         name: test-results
         path: test-results/
-    - name: Collect build data
+    - name: Telemetry - Collect build data
       working-directory: reports
       env: 
         PUSHGATEWAY_URL: ${{ secrets.PUSHGATEWAY_URL}}
+        BUILDEVENT_FILE: ./${{ env.BUILDEVENT_FILE }}
       if: always()
       run: |
         echo "github_actions_total_duration $(expr $(date +%s) - ${START_TIME})" | curl --data-binary @- ${PUSHGATEWAY_URL}/metrics/job/github_actions
         ./test_result_script.sh
+        buildevents step $TRACE_ID $STEP_ID $STEP_START $STEP_ID
