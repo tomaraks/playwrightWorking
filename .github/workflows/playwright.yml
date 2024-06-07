@@ -39,9 +39,3 @@ jobs:
       run: |
         echo "github_actions_total_duration $(expr $(date +%s) - ${START_TIME})" | curl --data-binary @- ${PUSHGATEWAY_URL}/metrics/job/github_actions
         ./test_result_script.sh
-    # - uses: actions/upload-artifact@v4
-    #   if: always()
-    #   with:
-    #     name: playwright-report
-    #     path: playwright-report/
-    #     retention-days: 30
